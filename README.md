@@ -7,4 +7,4 @@
 - pip install jupyter
 - pip install Keras
 - jupyter notebook
-- https://www.cs.toronto.edu/~kriz/cifar.html, download Python verson of CIFAR10 dataset.
+- https://www.cs.toronto.edu/~kriz/cifar.html, download Python verson of CIFAR100 dataset int imgs folder
