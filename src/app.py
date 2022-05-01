@@ -1,4 +1,8 @@
+from keras import Sequential
 from keras.datasets import cifar100
+from keras.layers import Dense, Dropout, Flatten
+from keras.constraints import MaxNorm
+from keras.layers.convolutional import Conv2D, MaxPooling2D
 import numpy as np
 import matplotlib.pyplot as pyplot
 from utils import get_labels, to_categorical, unpickle
@@ -47,3 +51,39 @@ test_labels = to_categorical(test_labels)
 train_images = train_images.astype("float32") / 255.0
 # print(train_images[0])
 test_images = test_images.astype("float32") / 255.0
+
+
+# Building the model!
+# A Sequential model inputs or outputs sequences of data, as a plain stack of layers where each layer has one input tensor and one output tensor
+model = Sequential()
+
+# Conv2D - takes in input layer and outputs a tensor ! First Layer
+# filters - number of output features
+# kernel_size - size of the filter we want, determines output features
+# recall that our input is 32x32 pixels with 3 different color channels (r,g,b)
+
+model.add(
+    Conv2D(
+        filters=32,
+        kernel_size=(3, 3),
+        input_size=(32, 32, 3),
+        padding="same",
+        kernel_constraint=MaxNorm(3),
+        activation="relu",
+    )
+)
+
+# Max Pooling - simplifies the input along spatial dimensions by taking the max value over an input window.
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+# Will flatten the matrix of features to a stream (list) of features
+model.add(Flatten())
+
+# Creates a dense layer that is connected to the flattened tensor.
+model.add(Dense(units=512, kernel_constraint=MaxNorm(3), activation="relu"))
+
+# Prevents over-fitting. drops half the neurons
+model.add(Dropout(rate=0.5))
+
+# Have 100 output categories, use softmax when working with probabilties
+model.add(Dense(units=100, activation="softmax"))
