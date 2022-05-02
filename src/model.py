@@ -6,7 +6,7 @@ from keras.layers.convolutional import Conv2D, MaxPooling2D
 from utils import get_labels, to_categorical
 import os
 
-print()
+
 # get list of fine and coarse labels
 (fine_labels, coarse_labels) = get_labels()
 
@@ -32,7 +32,24 @@ model = Sequential()
 
 model.add(
     Conv2D(
-        filters=32,
+        filters=128,
+        kernel_size=(3, 3),
+        input_shape=(32, 32, 3),
+        padding="same",
+        kernel_constraint=maxnorm(3),
+        activation="relu",
+    )
+)
+# Max Pooling - simplifies the input along spatial dimensions by taking the max value over an input window.
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+# drop to prevent over-fitting
+model.add(Dropout(rate=0.1))
+
+# Attempt to increase accuracy
+model.add(
+    Conv2D(
+        filters=256,
         kernel_size=(3, 3),
         input_shape=(32, 32, 3),
         padding="same",
@@ -44,13 +61,16 @@ model.add(
 # Max Pooling - simplifies the input along spatial dimensions by taking the max value over an input window.
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
+# drop to prevent over-fitting
+model.add(Dropout(rate=0.25))
+
 # Will flatten the matrix of features to a stream (list) of features
 model.add(Flatten())
 
 # Creates a dense layer that is connected to the flattened tensor.
-model.add(Dense(units=512, kernel_constraint=maxnorm(3), activation="relu"))
+model.add(Dense(units=1024, kernel_constraint=maxnorm(3), activation="relu"))
 
-# Prevents over-fitting. drops half the neurons
+# Prevents over-fitting. drops some of the neurons
 model.add(Dropout(rate=0.5))
 
 # Have 100 output categories, use softmax when working with probabilties
@@ -64,6 +84,6 @@ model.compile(
 )
 
 # Trains model for fixed number of epochs..the number of times we are iterating through the training data.
-model.fit(x=train_images, y=train_labels, epochs=1, batch_size=32)
+model.fit(x=train_images, y=train_labels, epochs=25, batch_size=32)
 
 model.save(filepath=os.getcwd() + "/src/image_classifier.h5")
