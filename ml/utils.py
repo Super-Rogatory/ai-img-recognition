@@ -262,14 +262,8 @@ def test_image(img):
     (fine_labels, _) = get_labels()
     # load model
     model = load_model(filepath=os.getcwd() + "/ml/image_classifier.h5")
-
-    print(img)
     # All predictions for every image!
     prediction = model.predict(img)
-
-    # recall there are 50000 training images and 10000 test images
-    rand_int = randint(0, 9999)
-    # Strip the first prediction vector from matrix, and return the index with highest probability value
-    guess_index = np.argmax(prediction[rand_int])
+    guess_index = np.argmax(prediction)
     # Use state to get the index of correct answer
     return f"IClass guesses: {fine_labels[guess_index]}"

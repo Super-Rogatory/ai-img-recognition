@@ -12,8 +12,10 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
+from keras.preprocessing import image
 from io import BytesIO
 from PIL import Image
+from skimage.transform import resize
 from utils import test_image
 
 
@@ -49,5 +51,14 @@ async def home_page(request: Request):
 async def check_picture(file: UploadFile):
     # read image from html post, convert to numpy array, make prediction with model
     img = await file.read()
-    img = np.array(Image.open(BytesIO(img))).reshape(32, 32, 3)
-    return {"filename": file.filename}
+    if not img:
+        return {"status": "No image present."}
+    img = np.array(Image.open(BytesIO(img)))  # convert from byte array to numpy array
+    img = resize(img, (32, 32))  # resize
+    img_tensor = image.img_to_array(img)  # (height, width, channels)
+    img_tensor = np.expand_dims(
+        img_tensor, axis=0
+    )  # (1, height, width, channels), add a dimension because the model expects this shape: (batch_size, height, width, channels)
+    img_tensor /= 255.0
+    prediction_message = test_image(img_tensor)
+    return {"status": prediction_message}
