@@ -7,6 +7,5 @@
 - pip install jupyter
 - pip install Keras
 - pip install numpy
-- https://www.cs.toronto.edu/~kriz/cifar.html, download Python verson of CIFAR100 dataset into imgs folder in project root directory
-- takes around 45 minutes to get ~90% accuracy.
-- run model.py then run test.py
+
+- run init.sh then run model.py then run test.py
