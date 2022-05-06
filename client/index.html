@@ -6,23 +6,45 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>45 Percent</title>
-        <link href="{{ url_for('styles', path='/styles.css') }}"
+        <link href="{{ url_for('client', path='/styles.css') }}"
             rel="stylesheet">
+        <script src="{{ url_for('client', path='/utils.js') }}"></script>
     </head>
 
     <body>
+
+
         <div class="container">
+            <!-- General ui layout -->
             <h1 class="input-container-title">A 45% Accurate AI Photo Guesser</h1>
-       
-            
             <div class="ui-inner-container">
-                <div class="image-border"></div>
-                <form class="inner-form">
-                    <input type="file" name="filename" id="file" />
-                    <input type="submit" value="Test AI!"/>
+                <div class="image-border">
+                    <img src="" alt="Image Preview...">
+                </div>
+                <form class="inner-form" action="/checkpicture"
+                    enctype="multipart/form-data"
+                    method="post">
+                    <input type="file" name="file" id="file"
+                        onchange="previewFile()" />
+                    <input type="submit" value="Test AI!" />
                 </form>
             </div>
+            <!-- Shows more details about the 45 percent classifier -->
+            <div class="popup-container" onclick="showMoreInformation()">More
+                Info...
+                <span class="popuptext" id="detailsPopup"
+                    onclick="getResultsFromAI()">
+                    The 45 percent classifier works on the CIFAR100 dataset from
+                    cs.toronto.edu, you should be able to train the dataset and
+                    then
+                    use this app to see if the AI can guess the image that you
+                    have
+                    entered.
+
+                </span>
+            </div>
         </div>
+
     </body>
 
 </html>

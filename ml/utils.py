@@ -15,6 +15,10 @@
 
 import pickle
 import numpy as np
+import os
+import matplotlib.pyplot as plt
+from keras.models import load_model
+from random import randint
 
 
 def unpickle(file):
@@ -251,3 +255,21 @@ class SGD(optimizer_v2.OptimizerV2):
             }
         )
         return config
+
+
+def test_image(img):
+    # get list of fine and coarse labels
+    (fine_labels, _) = get_labels()
+    # load model
+    model = load_model(filepath=os.getcwd() + "/ml/image_classifier.h5")
+
+    print(img)
+    # All predictions for every image!
+    prediction = model.predict(img)
+
+    # recall there are 50000 training images and 10000 test images
+    rand_int = randint(0, 9999)
+    # Strip the first prediction vector from matrix, and return the index with highest probability value
+    guess_index = np.argmax(prediction[rand_int])
+    # Use state to get the index of correct answer
+    return f"IClass guesses: {fine_labels[guess_index]}"
