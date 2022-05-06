@@ -1,0 +1,1 @@
+server: uvicorn --port $PORT --app-dir="./server" app:app --reload

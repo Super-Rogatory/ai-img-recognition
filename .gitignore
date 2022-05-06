@@ -1,3 +1,4 @@
+.env
 imgs/
 **/__pycache__/
-src/image_classifier.h5
+ml/image_classifier.h5

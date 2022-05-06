@@ -86,4 +86,4 @@ model.compile(
 # Trains model for fixed number of epochs..the number of times we are iterating through the training data.
 model.fit(x=train_images, y=train_labels, epochs=25, batch_size=32)
 
-model.save(filepath=os.getcwd() + "/src/image_classifier.h5")
+model.save(filepath=os.getcwd() + "/ml/image_classifier.h5")

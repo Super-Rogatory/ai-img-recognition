@@ -30,7 +30,7 @@ test_images = test_images.astype("float32") / 255.0
 test_labels = to_categorical(test_labels)
 
 # load model
-model = load_model(filepath=os.getcwd() + "/src/image_classifier.h5")
+model = load_model(filepath=os.getcwd() + "/ml/image_classifier.h5")
 
 # evaluate returns a list with loss and accuracy
 loss, accuracy = model.evaluate(x=test_images, y=test_labels)
