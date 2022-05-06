@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>45 Percent</title>
+        <link href="{{ url_for('client', path='/styles.css') }}"
+            rel="stylesheet">
+        <script src="{{ url_for('client', path='/utils.js') }}"></script>
+    </head>
+
+    <body>
+
+
+        <div class="container">
+            <!-- General ui layout -->
+            <h1 class="input-container-title">A 45% Accurate AI Photo Guesser</h1>
+            <div class="ui-inner-container">
+                <div class="image-border">
+                    <img src="" alt="Image Preview...">
+                </div>
+                <form class="inner-form" action="/checkpicture"
+                    enctype="multipart/form-data"
+                    method="post">
+                    <input type="file" name="file" autocomplete="off" id="file"
+                        onchange="previewFile()" />
+                    <input type="submit" value="Test AI!" />
+                </form>
+            </div>
+            <div>
+                <p style="font-weight: 800;"> {{ message }} </p>
+            </div>
+        </div>
+
+    </body>
+
+</html>

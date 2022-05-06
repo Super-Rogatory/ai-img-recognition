@@ -267,4 +267,4 @@ def test_image(img):
     # get the prediction data from img
     guess_index = np.argmax(prediction[0])
     # Use state to get the index of correct answer
-    return f"IClass guesses: {fine_labels[guess_index]}"
+    return f"I'm guessing that this is a {fine_labels[guess_index]}?"

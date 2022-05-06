@@ -48,7 +48,7 @@ async def home_page(request: Request):
 
 
 @app.post("/checkpicture")
-async def check_picture(file: UploadFile):
+async def check_picture(request: Request, file: UploadFile):
     # read image from html post, convert to numpy array, make prediction with model
     img = await file.read()
     if not img:
@@ -66,4 +66,6 @@ async def check_picture(file: UploadFile):
     img_tensor = img_tensor.astype("float32") / 255.0
 
     prediction_message = test_image(img_tensor)
-    return {"status": prediction_message}
+    return templates.TemplateResponse(
+        "guess.html", {"request": request, "message": prediction_message}
+    )
