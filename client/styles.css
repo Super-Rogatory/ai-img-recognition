@@ -1,3 +1,31 @@
 html {
-    background-color: black;
+    background-color: blanchedalmond;
+}
+
+.container {
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.image-border {
+    width: 600px;
+    height: 600px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+}
+
+.input-container-title {
+    height: 10%;
+}
+
+.ui-inner-container {
+    height: 90%;
+}
+
+.inner-form {
+    padding: 16px;
+    text-align: center;
 }

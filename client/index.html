@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document1</title>
-    <link href="{{ url_for('styles', path='/styles.css') }}" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>45 Percent</title>
+        <link href="{{ url_for('styles', path='/styles.css') }}"
+            rel="stylesheet">
+    </head>
 
-<body>
-
-</body>
+    <body>
+        <div class="container">
+            <h1 class="input-container-title">A 45% Accurate AI Photo Guesser</h1>
+       
+            
+            <div class="ui-inner-container">
+                <div class="image-border"></div>
+                <form class="inner-form">
+                    <input type="file" name="filename" id="file" />
+                    <input type="submit" value="Test AI!"/>
+                </form>
+            </div>
+        </div>
+    </body>
 
 </html>

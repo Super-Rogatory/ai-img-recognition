@@ -8,4 +8,7 @@
 - pip install Keras
 - pip install numpy
 
-- run init.sh then run model.py then run test.py
+- run init.sh 
+- run 'foreman start server' 
+- travel to http://localhost:5000
+- then run model.py then run test.py
