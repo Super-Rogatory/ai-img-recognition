@@ -264,6 +264,7 @@ def test_image(img):
     model = load_model(filepath=os.getcwd() + "/ml/image_classifier.h5")
     # All predictions for every image!
     prediction = model.predict(img)
-    guess_index = np.argmax(prediction)
+    # get the prediction data from img
+    guess_index = np.argmax(prediction[0])
     # Use state to get the index of correct answer
     return f"IClass guesses: {fine_labels[guess_index]}"

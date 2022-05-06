@@ -53,12 +53,17 @@ async def check_picture(file: UploadFile):
     img = await file.read()
     if not img:
         return {"status": "No image present."}
-    img = np.array(Image.open(BytesIO(img)))  # convert from byte array to numpy array
-    img = resize(img, (32, 32))  # resize
-    img_tensor = image.img_to_array(img)  # (height, width, channels)
+    # convert from byte array to numpy array
+    img_arr = np.array(Image.open(BytesIO(img)))
+    # load image into pil format
+    pil_image = Image.fromarray(img_arr)
+    pil_image = pil_image.resize((32, 32))
+    # create keras tensor from pil image
+    img_tensor = image.img_to_array(pil_image)  # (height, width, channels)
     img_tensor = np.expand_dims(
         img_tensor, axis=0
     )  # (1, height, width, channels), add a dimension because the model expects this shape: (batch_size, height, width, channels)
-    img_tensor /= 255.0
+    img_tensor = img_tensor.astype("float32") / 255.0
+
     prediction_message = test_image(img_tensor)
     return {"status": prediction_message}
