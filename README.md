@@ -1,5 +1,4 @@
 # Image Recognition Final Project
-# Microservice Implementation with FastAPI
 
 <!-- ABOUT THE PROJECT -->
 ## Contributors
