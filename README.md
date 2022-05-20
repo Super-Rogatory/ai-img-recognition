@@ -18,7 +18,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple example steps. **In model.py, you can manipulate the data to improve your training and testing accuracy, try to get above 45%!**
 
 ### Steps
 
