@@ -26,13 +26,13 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://github.com/Super-Rogatory/thepercentfortyfive
    ```
-2. Initialize Project! (you may need to change permissions on your local machine)
+2. Initialize Project! **(you may need to restart your machine AND/OR change permissions on your local machine)**
    ```sh
    ./init.sh
    ```    
 3. Run the model file to train our model (you can tweak it to increase accuracy)
    ```sh
-   cd /ml
+   cd ml/
    python3 model.py
    ```
 4. Test the model file to check accuracy rating (default at 45%)
@@ -41,6 +41,7 @@ To get a local copy up and running follow these simple example steps.
    ```   
 5. Start up FastAPI Server
    ```sh
+   cd ../
    foreman start server
    ```   
 6. Travel to http://127.0.0.1:5000

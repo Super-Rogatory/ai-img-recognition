@@ -28,7 +28,7 @@ def unpickle(file):
 
 
 def get_labels():
-    data = unpickle("imgs/cifar-100-python/meta")
+    data = unpickle("../imgs/cifar-100-python/meta")
     fine_labels = []
     coarse_labels = []
     # create array of fine labels (source of truth)

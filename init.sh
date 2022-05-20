@@ -1,4 +1,6 @@
 # download necessary dependencies
+sudo apt install --yes python3-pip httpie ruby-foreman
+python3 -m pip install 'fastapi[all]'
 pip install -r requirements.txt
 
 # make imgs directory if it doesn't exist
